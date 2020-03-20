@@ -19,6 +19,7 @@ limitations under the License.
 #include <stdint.h>
 
 #include <GLES3/gl31.h>
+#undef Status
 #include "absl/base/macros.h"
 #include "tensorflow/lite/c/common.h"
 

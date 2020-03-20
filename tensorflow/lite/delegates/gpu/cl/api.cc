@@ -19,6 +19,7 @@ limitations under the License.
 #include <cstring>
 
 #include <EGL/eglext.h>
+#undef Status
 #include "absl/memory/memory.h"
 #include "absl/types/span.h"
 #include "tensorflow/lite/delegates/gpu/cl/cl_command_queue.h"
@@ -601,9 +602,9 @@ class InferenceBuilderImpl : public InferenceBuilder {
       preferred_storage_types = {GetFastestStorageType(environment_->device()),
                                  TensorStorageType::BUFFER};
     } else {
-      preferred_storage_types = {
-          GetStorageTypeWithMinimalMemoryConsumption(environment_->device()),
-          TensorStorageType::BUFFER};
+      preferred_storage_types = {TensorStorageType::IMAGE_BUFFER,
+                                 GetFastestStorageType(environment_->device()),
+                                 TensorStorageType::BUFFER};
     }
 
     for (TensorStorageType storage_type : preferred_storage_types) {

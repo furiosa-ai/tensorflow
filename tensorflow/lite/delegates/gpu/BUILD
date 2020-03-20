@@ -8,7 +8,7 @@ package(
 )
 
 exports_files([
-    "delegate.h",
+    "gpu_delegate.h",
     "metal_delegate.h",
 ])
 
@@ -99,7 +99,6 @@ objc_library(
         "//tensorflow/lite/delegates/gpu/metal:api",
         "//tensorflow/lite/delegates/gpu/metal:buffer_convert",
         "//tensorflow/lite/delegates/gpu/metal:compiled_model",
-        "//tensorflow/lite/delegates/gpu/metal:environment",
         "//tensorflow/lite/delegates/gpu/metal:inference_context",
         "@com_google_absl//absl/types:span",
     ],
@@ -121,6 +120,8 @@ cc_binary(
     name = "libtensorflowlite_gpu_gl.so",
     linkopts = [
         "-Wl,-soname=libtensorflowlite_gpu_gl.so",
+    "-lEGL",
+    "-lGLESv2",
     ] + select({
         "//tensorflow:android": [
             "-lEGL",
@@ -146,10 +147,10 @@ cc_binary(
     name = "libtensorflowlite_gpu_delegate.so",
     linkopts = [
         "-Wl,-soname=libtensorflowlite_gpu_delegate.so",
+    "-lEGL",
+    "-lGLESv2",
     ] + select({
         "//tensorflow:android": [
-            "-lEGL",
-            "-lGLESv3",
             "-fvisibility=hidden",
         ],
         "//tensorflow:windows": [],

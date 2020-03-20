@@ -20,6 +20,7 @@ limitations under the License.
 #include <memory>
 
 #include <EGL/egl.h>
+#undef Status
 #include "absl/types/span.h"
 #include "tensorflow/lite/delegates/gpu/api.h"
 #include "tensorflow/lite/delegates/gpu/common/model.h"

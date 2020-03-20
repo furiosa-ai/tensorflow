@@ -20,6 +20,7 @@ limitations under the License.
 
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
+#undef Status
 #include "tensorflow/lite/delegates/gpu/cl/cl_context.h"
 #include "tensorflow/lite/delegates/gpu/cl/cl_device.h"
 #include "tensorflow/lite/delegates/gpu/cl/cl_event.h"
